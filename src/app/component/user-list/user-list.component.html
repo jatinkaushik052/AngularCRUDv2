@@ -1,0 +1,66 @@
+<div class="container mt-2 row">
+
+  <button routerLink="/adduser" type="button" class="w-25 btn btn-success mx-2 mb-3">Add New</button>
+
+  <div class="col-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Sno</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Department</th>
+          <th scope="col">State</th>
+          <th scope="col">Action</th>
+
+        </tr>
+      </thead>
+      <tbody class="rowColor">
+        @for (value of pageData; track $index; ) {
+
+        <tr>
+          <td>{{ (currentPage - 1) * itemsPerpage + ($index + 1) }}</td>
+          <td>{{value.name}}</td>
+          <td>{{value.email}}</td>
+          <td>{{value.department}}</td>
+          <td>{{value.state}}</td>
+          <td>
+            <button (click)="onEdit(value.id)" class="btn btn-info">Edit</button>
+            <button (click)="onDelete(value.id)" class="btn btn-danger" style="margin-left: 10px;"
+              data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Delete Modal -->
+  <div *ngIf="isDeletepop" class="modal fade show" id="exampleModal" data-bs-backdrop="static" style="display: block;"
+    data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h1>
+        </div>
+        <div class="modal-body">
+          You want to Delete.
+        </div>
+        <div class="modal-footer">
+          <button (click)="closeModal()" routerLink="/userlist" type="button" class="btn btn-success"
+            data-bs-dismiss="modal">No</button>
+          <button routerLink="/userlist" type="button" class="btn btn-danger" data-bs-dismiss="modal"
+            (click)="deleteData()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Pageination  -->
+  <div class="pagination-controls">
+    <button  type="button" class="btn btn-info" (click)="prePage()" [disabled]="currentPage === 1">Previous</button>
+    <span class="text-white">Page {{ currentPage }} of {{ totalPage() }}</span>
+    <button  type="button" class="btn btn-info" (click)="nextPage()" [disabled]="currentPage === totalPage()">Next</button>
+  </div>
+</div>

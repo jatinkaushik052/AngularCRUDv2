@@ -1,0 +1,68 @@
+<div class="container">
+    
+    <button  type="button" class="btn btn-info text-white mt-3" routerLink="/userlist">Back To List</button>
+        <form action="" class="row gy-4" [formGroup]="addUserForm">
+            <div class="col-6 d-flex flex-column">
+                <label for="">Name</label>
+                <input formControlName="name" type="text" placeholder="Enter your name...">
+            </div>
+            <div class="col-6 d-flex flex-column">
+                <label for="">Email</label>
+                <input formControlName="email" type="text" placeholder="Enter your name...">
+            </div>
+            <div class="col-6 d-flex flex-column">
+                <label for="">Department</label>
+                <input formControlName="department" type="text" placeholder="Enter your name...">
+            </div>
+            <div class="col-6 d-flex flex-column">
+                <label for="">State</label>
+                <input formControlName="state" type="text" placeholder="Enter your name...">
+            </div>
+            <div class="col-6 d-flex gap-3">
+                <button type="button" *ngIf="currentId == 0" (click)="onAdd()" class="btn btn-success w-50 py-2">Add </button>
+                <br>
+                <button type="button" routerLink="/userlist" *ngIf="currentId == 0"  class="btn btn-info w-50 py-2">View List</button>
+
+                <button type="button" *ngIf="currentId !== 0" (click)="onUpdate()" class="btn btn-warning w-50 py-2">Update </button>
+            </div>
+        </form>
+
+
+        <!-- Modal -->
+        <div *ngIf="isModalShow" class="modal fade show" id="staticBackdrop" data-bs-backdrop="static" style="display: block;"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Data Saved Successfully</h1>
+                        <!-- <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button> -->
+                    </div>
+                    <!-- <div class="modal-body">
+                        ...
+                    </div> -->
+                    <div class="modal-footer">
+                        <button (click)="closeModal()" routerLink="/userlist" type="button" class="btn btn-success"
+                            data-bs-dismiss="modal">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- modal for updating -->
+        <div *ngIf="isModalShowUpdate" class="modal fade show" id="staticBackdrop" data-bs-backdrop="static" style="display: block;"
+            data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Data Updated Successfully</h1>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button (click)="closeModal()" routerLink="/userlist" type="button" class="btn btn-success"
+                            data-bs-dismiss="modal">Okay</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

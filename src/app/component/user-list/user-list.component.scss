@@ -1,0 +1,45 @@
+table{
+  border-collapse: separate;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 50px;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0px;
+}
+
+.page-numbers button {
+  margin: 0 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.page-numbers button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.page-numbers button:disabled {
+  cursor: not-allowed;
+  background-color: #ddd;
+}
