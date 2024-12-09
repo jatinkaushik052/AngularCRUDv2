@@ -15,8 +15,13 @@
                 <input formControlName="department" type="text" placeholder="Enter your name...">
             </div>
             <div class="col-6 d-flex flex-column">
+                <!-- <label for="">State</label>
+                <input formControlName="state" type="text" placeholder="Enter your name..."> -->
                 <label for="">State</label>
-                <input formControlName="state" type="text" placeholder="Enter your name...">
+                <select formControlName="state"  name="" id="">
+                    <option value="" selected disabled>Choose State</option>
+                    <option *ngFor="let item of stateName;" [value]="item.name">{{ item.name }}</option>
+                </select>
             </div>
             <div class="col-6 d-flex gap-3">
                 <button type="button" *ngIf="currentId == 0" (click)="onAdd()" class="btn btn-success w-50 py-2">Add </button>
@@ -35,12 +40,9 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="staticBackdropLabel">Data Saved Successfully</h1>
-                        <!-- <button (click)="closeModal()" type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button> -->
+                        
                     </div>
-                    <!-- <div class="modal-body">
-                        ...
-                    </div> -->
+                  
                     <div class="modal-footer">
                         <button (click)="closeModal()" routerLink="/userlist" type="button" class="btn btn-success"
                             data-bs-dismiss="modal">Okay</button>

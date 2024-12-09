@@ -19,7 +19,7 @@ table{
   background-color: #fff;
   margin: 5% auto 15% auto;
   border: 1px solid #888;
-  width: 80%;
+  width: 100%;
 }
 
 .pagination-controls {
@@ -42,4 +42,12 @@ table{
 .page-numbers button:disabled {
   cursor: not-allowed;
   background-color: #ddd;
+}
+.toastStyle{
+  background-color: green;
+  width: 300px;
+  position: absolute;
+  right: 0;
+  top: 0;
+
 }
