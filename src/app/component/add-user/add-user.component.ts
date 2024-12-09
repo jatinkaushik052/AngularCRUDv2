@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { Component, OnInit ,} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -167,6 +167,7 @@ export class AddUserComponent {
     email: new FormControl(),
     department: new FormControl(),
     state: new FormControl(""),
+    currentDate: new FormControl(new Date().toLocaleString())
   })
 
   userValues: any[] = []; // this is for storing values of addUserForm
@@ -228,7 +229,8 @@ export class AddUserComponent {
       name: this.addUserForm.value?.name,
       email: this.addUserForm.value?.email,
       department: this.addUserForm.value?.department,
-      state: this.addUserForm.value?.state
+      state: this.addUserForm.value?.state,
+      currentDate: this.addUserForm.value?.currentDate
     }
 
     // getting data form local storage
@@ -259,6 +261,7 @@ export class AddUserComponent {
       currentData.email= this.addUserForm.get('email')?.value;
       currentData.department= this.addUserForm.get('department')?.value;
       currentData.state= this.addUserForm.get('state')?.value;
+
     }
     localStorage.setItem('userList',JSON.stringify(this.userValues))
   }

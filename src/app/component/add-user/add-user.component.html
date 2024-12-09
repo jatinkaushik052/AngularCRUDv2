@@ -22,7 +22,7 @@
                     <option value="" selected disabled>Choose State</option>
                     <option *ngFor="let item of stateName;" [value]="item.name">{{ item.name }}</option>
                 </select>
-            </div>
+            </div>            
             <div class="col-6 d-flex gap-3">
                 <button type="button" *ngIf="currentId == 0" (click)="onAdd()" class="btn btn-success w-50 py-2">Add </button>
                 <br>
@@ -30,6 +30,7 @@
 
                 <button type="button" *ngIf="currentId !== 0" (click)="onUpdate()" class="btn btn-warning w-50 py-2">Update </button>
             </div>
+
         </form>
 
 

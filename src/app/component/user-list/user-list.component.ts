@@ -16,10 +16,13 @@ export class UserListComponent {
   userValues: any[] = [];
   currentId: number=0;
 
+
   isDeletepop: boolean = false
   isToast:boolean=false
   deleteId: any
   isView:boolean =false;
+
+  currentDateTime: string='';
 
   constructor(private router: Router) { } //this is used to redirect to another page
 
@@ -38,15 +41,16 @@ export class UserListComponent {
       }
   }
 
+ 
   //update the page data when the current page changed
   updatePage():void {
     debugger
     const startIndex = (this.currentPage - 1) * this.itemsPerpage;
     const endIndex = startIndex + this.itemsPerpage;
-    this.pageData = this.userValues.slice(startIndex, endIndex)
-    console.log(this.pageData)
+    this.pageData = this.userValues.slice(startIndex, endIndex).reverse();
   }
-
+ 
+ 
   // navigate to the next page
   nextPage(): void{
     if(this.currentPage < this.totalPage()){
@@ -125,4 +129,7 @@ export class UserListComponent {
       this.isToast = false;
     }, 2000);
   }
+
+
+
 }

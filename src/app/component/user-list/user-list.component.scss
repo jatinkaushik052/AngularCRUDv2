@@ -1,5 +1,10 @@
 table{
   border-collapse: separate;
+  width: 100%;
+  .tableHeading{
+    color: white;
+    background-color: #00576b;
+  }
 }
 
 .modal {
@@ -51,3 +56,15 @@ table{
   top: 0;
 
 }
+
+// table{
+//   tr{
+//     td{
+//       background-color: red;
+      
+//     }
+//     :hover{
+//       background-color: green;
+//     }
+//   }
+// }

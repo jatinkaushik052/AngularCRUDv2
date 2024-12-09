@@ -1,21 +1,22 @@
 <div class="container mt-2 row">
-  
+
   <button routerLink="/adduser" type="button" class="w-25 btn btn-success mb-2 mx-1">Add New</button>
 
   <div class="col-12">
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Sno</th>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Department</th>
-          <th scope="col">State</th>
-          <th scope="col">Action</th>
+          <th class="tableHeading" scope="col">Sno</th>
+          <th class="tableHeading" scope="col">Name</th>
+          <th class="tableHeading" scope="col">Email</th>
+          <th class="tableHeading" scope="col">Department</th>
+          <th class="tableHeading" scope="col">State</th>
+          <th class="tableHeading" scope="col">Date/Time</th>
+          <th class="tableHeading" scope="col">Action</th>
 
         </tr>
       </thead>
-      <tbody class="rowColor">
+      <tbody>
         @for (value of pageData; track $index; ) {
 
         <tr>
@@ -24,11 +25,12 @@
           <td>{{value.email}}</td>
           <td>{{value.department}}</td>
           <td>{{value.state}}</td>
-          <td class="d-flex justify-content-between ">
+          <td style="font-size: 15px;" >{{value.currentDate}}</td>
+          <td class="d-flex justify-content-between">
             <button (click)="onEdit(value.id)" class="btn btn-info text-white">Edit</button>
-            <button (click)="onDelete(value.id)" class="btn btn-danger" 
-              data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
-            <button (click)="onView(value.id)" class="btn btn-primary" >View</button>
+            <button (click)="onDelete(value.id)" class="btn btn-danger" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">Delete</button>
+            <button (click)="onView(value.id)" class="btn btn-primary">View</button>
 
           </td>
         </tr>
@@ -37,40 +39,41 @@
     </table>
   </div>
 
-<!-- view popup page -->
-<div *ngIf=" isView" class="modal fade show" id="exampleModal" data-bs-backdrop="static" style="display: block;"
+  <!-- view popup page -->
+  <div *ngIf=" isView" class="modal fade show" id="exampleModal" data-bs-backdrop="static" style="display: block;"
     data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">User Details</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="closeView()"></button>
         </div>
-        <div  class="modal-body">
-        
-        <form action="" class="row gy-4" *ngIf="currentIdValue">
+        <div class="modal-body">
+
+          <form action="" class="row gy-4" *ngIf="currentIdValue">
             <div class="col-6 d-flex flex-column">
-                <label for="">Name</label>
-                <input value="{{currentIdValue.name}}" disabled>
+              <label for="">Name</label>
+              <input value="{{currentIdValue.name}}" disabled>
             </div>
             <div class="col-6 d-flex flex-column">
               <label for="">Email</label>
               <input value="{{currentIdValue.email}}" disabled>
-          </div>
-          <div class="col-6 d-flex flex-column">
-            <label for="">Department</label>
-            <input value="{{currentIdValue.department}}" disabled>
-        </div>
-        <div class="col-6 d-flex flex-column">
-          <label for="">State</label>
-          <input value="{{currentIdValue.state}}" disabled>
-      </div>
-           
-           
-        </form>
+            </div>
+            <div class="col-6 d-flex flex-column">
+              <label for="">Department</label>
+              <input value="{{currentIdValue.department}}" disabled>
+            </div>
+            <div class="col-6 d-flex flex-column">
+              <label for="">State</label>
+              <input value="{{currentIdValue.state}}" disabled>
+            </div>
+
+
+          </form>
         </div>
         <div class="modal-footer">
-          <button (click)="closeView()" type="button" class="btn btn-success"
-            data-bs-dismiss="modal">Okay</button>
+          <button (click)="closeView()" type="button" class="btn btn-success" data-bs-dismiss="modal">Okay</button>
         </div>
       </div>
     </div>
@@ -85,6 +88,9 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Are You Sure?</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+            (click)="closeModal()"></button>
+
         </div>
         <div class="modal-body">
           You want to Delete.
@@ -102,19 +108,20 @@
 
   <!-- Pageination  -->
   <div class="pagination-controls">
-    <button type="button" class="btn btn-info text-white" (click)="prePage()" [disabled]="currentPage === 1">Previous</button>
+    <button type="button" class="btn btn-info text-white" (click)="prePage()"
+      [disabled]="currentPage === 1">Previous</button>
     <span class="text-white">Page {{ currentPage }} of {{ totalPage() }}</span>
     <button type="button" class="btn btn-info text-white" (click)="nextPage()"
       [disabled]="currentPage === totalPage()">Next</button>
   </div>
 
 
-<!-- Toast -->
-  
-    <div *ngIf="isToast" class="toast show toastStyle">
-      <div class="toast-body text-white">
-        Your data is Deleted Successfully.
-      </div>
+  <!-- Toast -->
+
+  <div *ngIf="isToast" class="toast show toastStyle">
+    <div class="toast-body text-white">
+      Your data is Deleted Successfully.
     </div>
+  </div>
 
 </div>
